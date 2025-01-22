@@ -8,7 +8,9 @@ public:
             if(s.find(nums[i]) != s.end()){
                 return nums[i];
             }
-            s.insert(nums[i]);
+            else{
+                s.insert(nums[i]);
+            }            
         }
         return -1;
     }
