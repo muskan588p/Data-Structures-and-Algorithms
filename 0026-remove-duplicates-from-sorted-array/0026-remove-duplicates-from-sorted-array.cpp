@@ -7,8 +7,8 @@ public:
             s.insert(nums[i]);
         }
         int idx=0;
-        for(auto it : s){
-            nums[idx] = it;
+        for(auto it : s){      //Iterate over the elements in the set
+            nums[idx] = it;    //copy them back to the nums array
             idx++;
         }
         return idx;
