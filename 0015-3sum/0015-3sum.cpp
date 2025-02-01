@@ -35,8 +35,3 @@ public:
         return ans;
     }
 };
-// A set ensures that duplicate triplets are not inserted multiple times.
-// Since the order of numbers in a triplet doesn't matter, sorting each triplet before inserting into the set avoids duplicates.
-
-// The final answer must be returned as a vector of vectors, not a set.
-// Since a set cannot directly be returned, you copy the unique triplets from set s to ans.
