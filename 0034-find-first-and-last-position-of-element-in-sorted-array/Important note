@@ -1,0 +1,16 @@
+1. Why check only lb and not ub?
+
+    ub (upper bound) gives the first index greater than target.
+    ub - 1 gives the last occurrence of target (if target exists).
+    However, ub itself does not directly tell us whether target exists in nums, because it always points to the first index greater than target, not the actual target.
+
+2. Why the condition if(lb == n || nums[lb] != target)?
+
+    lb == n: If lb is equal to n, it means the target is larger than all elements in nums, so it doesn't exist.
+    nums[lb] != target: Even if lb is within bounds, the value at lb might not be target, meaning target is absent from nums.
+
+3. Why not check ub in this condition?
+
+    ub alone does not confirm whether target exists.
+    The presence of target is determined by lb, not ub, because lb is the first index where target appears if it exists.
+    Checking ub is unnecessary for this step because lb alone is sufficient to determine whether target is present.
