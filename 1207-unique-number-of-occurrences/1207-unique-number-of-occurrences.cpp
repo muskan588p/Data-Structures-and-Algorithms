@@ -1,36 +1,33 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        vector<int> ans; // Stores the frequency of each unique element
-        int size = arr.size(); // Get the size of the input array
-        int i = 0; // Start pointer for iteration
+        vector<int> ans; 
+        int size = arr.size(); 
+        int i = 0; 
         
-        // Step 1: Sort the array
         sort(arr.begin(), arr.end());
 
-        // Step 2: Count occurrences of each unique number
+        //Count occurrences of each unique number
         while (i < size) {
             int count = 1; // Initialize the count for the current number
             for (int j = i + 1; j < size; j++) {
                 if (arr[i] == arr[j]) {
-                    count++; // Increment count if the next number is the same
+                    count++; 
                 } else {
-                    break; // Stop counting when a different number is encountered
+                    break; 
                 }
             }
-            ans.push_back(count); // Store the count of occurrences
-            i = i + count; // Move to the next unique number
+            ans.push_back(count);
+            i = i + count; 
         }
-
-        // Step 3: Check if the counts are unique
+        //Check if the counts are unique
         size = ans.size(); // Update the size to the number of unique counts
-        sort(ans.begin(), ans.end()); // Sort the frequency list
+        sort(ans.begin(), ans.end()); 
         for (int i = 0; i < size - 1; i++) {
             if (ans[i] == ans[i + 1]) {
-                return false; // If two frequencies are the same, return false
+                return false; 
             }
         }
-
-        return true; // All frequencies are unique, return true
+        return true; // All frequencies are unique
     }
 };
