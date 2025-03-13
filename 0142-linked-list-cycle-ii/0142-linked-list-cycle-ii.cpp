@@ -18,19 +18,14 @@ public:
             fast=fast->next->next;
 
             if(slow==fast){
-                iscycle=true;
-                break;
+                slow=head;
+                while(slow!=fast){
+                    slow=slow->next;
+                    fast=fast->next;
+                }
+                return slow;
             }
         }
-        if(iscycle==false){
-            return nullptr;
-        }
-
-        slow=head;
-        while(slow!=fast){
-            slow=slow->next;
-            fast=fast->next;
-        }
-        return slow;
+        return nullptr;
     }
 };
