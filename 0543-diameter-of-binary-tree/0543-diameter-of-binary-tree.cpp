@@ -11,24 +11,23 @@
  */
 class Solution {
 public:
-    int height(TreeNode* root) {
+    int height(TreeNode* root, int& diameter) {     //pass by reference
         if(root==nullptr){
             return 0;
         }
 
-        int lh=height(root->left);
-        int rh=height(root->right);
+        int lh=height(root->left, diameter);
+        int rh=height(root->right, diameter);
+        diameter= max(diameter, lh+rh);
 
         return 1 + max(lh, rh);
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(root==nullptr){
-            return 0;
-        }
-        int d1=diameterOfBinaryTree(root->left);   //left subtree
-        int d2=diameterOfBinaryTree(root->right);  //right subtree
-        int d3=height(root->left) + height(root->right);
+        int diameter=0;
+        height(root, diameter);
 
-        return max(d1 , max( d2, d3));
+        return diameter;
     }
 };
+//number of edges not no. of nodes
+// thus dont add 1 for root node
