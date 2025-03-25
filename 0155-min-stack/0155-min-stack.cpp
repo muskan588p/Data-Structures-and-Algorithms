@@ -16,7 +16,7 @@ public:
                 st.push(val);
             }
             else{               // val<minval
-                st.push(2*val - minval);   //minval = prevminval
+                st.push((long long)2*val - minval);   //minval = prevminval
                 minval=val;
             }
         }
