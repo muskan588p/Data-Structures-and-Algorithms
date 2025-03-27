@@ -1,26 +1,24 @@
 class Solution {
 public:
-    int trap(vector<int>& arr) {   //height=arr
+    int trap(vector<int>& arr) {  //height=arr
         int n=arr.size();
-        vector<int> lmax(n,0);
-        vector<int> rmax(n,0);
+        int l=0; int r=n-1;    //indices
+        int lmax=0; int rmax=0;
+        int ans=0;
 
-        //initialize
-        lmax[0]=arr[0];
-        rmax[n-1]=arr[n-1];
+        while(l<r){
+            lmax=max(lmax, arr[l]);
+            rmax=max(rmax, arr[r]);
 
-        for(int i=1;i<n;i++){
-            lmax[i]=max(lmax[i-1], arr[i]);
+            if(lmax<rmax){
+                ans+=lmax-arr[l];    //jis index pr hai ussi ko add krenge
+                l++;
+            }
+            else{
+                ans+=rmax-arr[r];
+                r--;
+            }
         }
-
-        for(int i=n-2;i>=0;i--){
-            rmax[i]=max(rmax[i+1] , arr[i]);
-        }
-
-        int total=0;
-        for(int i=0;i<n;i++){
-            total+= (min(lmax[i], rmax[i])) - arr[i];
-        }
-        return total;
+        return ans;
     }
 };
