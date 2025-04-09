@@ -39,7 +39,6 @@ public:
                     q.push(node->right);
                 }
             }
-
             ans.push_back(level);
             flag=!flag;      //change the flag to true and false after every level
         }
