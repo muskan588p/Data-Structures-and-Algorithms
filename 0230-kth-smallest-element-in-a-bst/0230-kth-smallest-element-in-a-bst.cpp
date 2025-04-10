@@ -1,15 +1,24 @@
 class Solution {
 public:
-    void inorder(TreeNode* root, vector<int>& nodes) {
-        if (root == nullptr) return;
-        inorder(root->left, nodes);
-        nodes.push_back(root->val);  // store sorted values
-        inorder(root->right, nodes);
+    int inorder(TreeNode* root,int k, int& count, int& ans) {
+        if (root == nullptr){
+            return -1;
+        }
+        inorder(root->left, k, count, ans);
+        count++;
+        if(count == k){
+            ans=root->val;
+            return ans;
+        }
+        inorder(root->right, k, count, ans);
+
+        return -1;
     }
 
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> nodes;
-        inorder(root, nodes);
-        return nodes[k - 1];  // kth smallest (1-indexed)
+        int count=0;
+        int ans=-1;
+        inorder(root, k, count, ans);
+        return ans;
     }
 };
