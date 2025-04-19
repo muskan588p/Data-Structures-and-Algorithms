@@ -18,7 +18,8 @@ public:
             }
         }
         return -1;
-    }
+    } 
+    //pass the pridx by reference
     TreeNode* solve(vector<int>& preorder, vector<int>& inorder, int& preidx, int instart, int inend, int n) {
         //base case
         if(preidx >= n || instart > inend){
