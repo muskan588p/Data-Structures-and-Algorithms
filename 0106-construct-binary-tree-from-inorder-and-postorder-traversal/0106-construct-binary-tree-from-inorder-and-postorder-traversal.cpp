@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* solve(vector<int>& inorder, vector<int>& postorder, int& postidx, int instart, int inend, int n, map<int, int> mp){
+    TreeNode* solve(vector<int>& inorder, vector<int>& postorder, int& postidx, int instart, int inend, int n, map<int, int>& mp){
         //base case
         if(postidx < 0 || instart > inend){
             return nullptr;
