@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //memorization
     int solve(int n, vector<int> &dp){
         if(n<=2){
             return n;
