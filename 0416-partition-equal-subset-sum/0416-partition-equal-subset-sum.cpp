@@ -28,9 +28,10 @@ public:
         if(sum%2 != 0){
             return false;
         }
+        vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
         sum=sum/2;
 
-        vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
+        // vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
         int ans=solve(nums, n, sum, dp);
         return ans;
     }
