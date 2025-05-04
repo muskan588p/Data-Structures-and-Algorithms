@@ -12,7 +12,7 @@ public:
         int n=intervals.size();
 
         for(int i=0;i<n;i++){
-            if(prevend <= intervals[i][0]){
+            if(prevend <= intervals[i][0]){  // <= becuase = is allowed
                 prevend=intervals[i][1];
             }
             else{
