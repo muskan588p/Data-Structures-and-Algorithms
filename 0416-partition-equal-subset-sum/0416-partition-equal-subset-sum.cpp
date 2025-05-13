@@ -1,38 +1,42 @@
 class Solution {
 public:
-    bool solve(vector<int>& nums, int n, int sum, vector<vector<int>> &dp){
-        if (sum == 0) {
-            return true;
-        }
-        if (n == 0) {
-            return false;
-        }
-        if(dp[n][sum] != -1){
-            return dp[n][sum];
-        }
-
-        if(nums[n-1] <= sum){
-            dp[n][sum]=solve(nums, n-1, sum-nums[n-1], dp) || solve(nums, n-1, sum, dp);
-        }
-        else{
-            dp[n][sum]=solve(nums, n-1, sum, dp);
-        }
-        return dp[n][sum];
-    }
     bool canPartition(vector<int>& nums) {
-        int n=nums.size();
-        int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=nums[i];
+        int n = nums.size();
+        int sum = 0;
+
+        // Calculate the total sum of the array
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
         }
-        if(sum%2 != 0){
+
+        // If the sum is odd, we cannot split the array into two equal subsets
+        if (sum % 2 != 0) {
             return false;
         }
-        vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
-        sum=sum/2;
 
-        // vector<vector<int>> dp(n+1, vector<int> (sum+1, -1));
-        int ans=solve(nums, n, sum, dp);
-        return ans;
+        // Target sum for each subset is half of the total sum
+        sum /= 2;
+
+        // DP table, where dp[i][j] means whether we can form sum 'j' using first 'i' elements
+        vector<vector<bool>> dp(n + 1, vector<bool>(sum + 1, false));
+
+        // Base case: we can always form a sum of 0 (by not picking any elements)
+        for (int i = 0; i <= n; i++) {
+            dp[i][0] = true;
+        }
+
+        // Fill the DP table
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= sum; j++) {
+                if (nums[i - 1] <= j) {
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];  // Include or exclude the current element
+                } else {
+                    dp[i][j] = dp[i - 1][j];  // Exclude the current element
+                }
+            }
+        }
+
+        // The answer is whether we can form the target sum using all elements
+        return dp[n][sum];
     }
 };
