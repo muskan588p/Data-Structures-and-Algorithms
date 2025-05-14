@@ -1,37 +1,22 @@
 class Solution {
 public:
-    int solve(vector<int>& coins, int amount, vector<int> &dp){
-        int n=coins.size();
-        //base case
-        if(amount==0){
-            return 0;   //0 coins required
-        }
-        if(amount<0){
-            return INT_MAX;
-        }
-        if(dp[amount] != -1){
-            return dp[amount];
-        }
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> dp(amount + 1, INT_MAX); 
+        dp[0] = 0;  // Base case: 0 coins are needed to make amount 0
 
-        int mincoins=INT_MAX;
-        for(int i=0;i<n;i++){
-            int ans=solve(coins, amount-coins[i], dp);
-            if(ans != INT_MAX){
-                mincoins= min(mincoins, 1+ans);
+        // Iterate over all amounts from 1 to amount
+        for (int i = 1; i <= amount; i++) {
+            // Try each coin using index-based loop
+            for (int j = 0; j < coins.size(); j++) {
+                int coin = coins[j];
+                if (i - coin >= 0 && dp[i - coin] != INT_MAX) {
+                    dp[i] = min(dp[i], dp[i - coin] + 1);
+                }
             }
         }
-        dp[amount]=mincoins;
-        return dp[amount];
-    }
-    int coinChange(vector<int>& coins, int amount) {
-        vector<int> dp(amount+1, -1);
-        int ans=solve(coins, amount, dp);
-
-        if(ans==INT_MAX){
+        if(dp[amount] == INT_MAX){
             return -1;
         }
-        else{
-            return ans;
-        }
+        return dp[amount];  
     }
 };
