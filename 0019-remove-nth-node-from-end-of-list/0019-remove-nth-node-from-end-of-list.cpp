@@ -25,9 +25,12 @@ public:
             slow=slow->next;     //slow reaaches n-1 node
             fast=fast->next;
         }
-        ListNode* delnode=slow->next;
-        slow->next = slow->next->next;
-        delete delnode;
+        // ListNode* delnode=slow->next;
+        // slow->next = slow->next->next;
+        // delete delnode;
+        ListNode* temp=slow->next;
+        slow->next=slow->next->next;
+        temp->next=nullptr;
 
         return head;
     }
