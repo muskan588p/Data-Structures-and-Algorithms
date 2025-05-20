@@ -27,6 +27,7 @@ public:
                 TreeNode* temp=q.front();
                 q.pop();
 
+                level.push_back(temp->val);
                 //add child nodes
                 if(temp->left){
                     q.push(temp->left);
@@ -34,7 +35,7 @@ public:
                 if(temp->right){
                     q.push(temp->right);
                 }
-                level.push_back(temp->val);
+                // level.push_back(temp->val);
             }  
             ans.push_back(level);       
         }
