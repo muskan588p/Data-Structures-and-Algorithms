@@ -1,24 +1,28 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
-        unordered_map<int, int> m;
-        stack<int> s;
-        for(int i=nums2.size()-1 ;i>=0;i--){       //start from n-1 backwards
-            while(!s.empty() && s.top()<=nums2[i]){
-                s.pop();
+        vector<int> result;
+
+        for (int i = 0; i < nums1.size(); ++i) {
+            int index = -1;
+
+            // Find the index of nums1[i] in nums2
+            for (int j = 0; j < nums2.size(); ++j) {
+                if (nums2[j] == nums1[i]) {
+                    index = j;
+                    break;
+                }
             }
-            if(s.empty()){
-                m[nums2[i]] = -1;
+            // Find the next greater element in nums2
+            int nextGreater = -1;
+            for (int j = index + 1; j < nums2.size(); ++j) {
+                if (nums2[j] > nums1[i]) {
+                    nextGreater = nums2[j];
+                    break;
+                }
             }
-            else{
-                m[nums2[i]] = s.top();
-            }
-            s.push(nums2[i]);
+            result.push_back(nextGreater);
         }
-        vector<int> ans;
-        for(int i=0;i<nums1.size();i++){
-            ans.push_back(m[nums1[i]]);
-        }
-        return ans;
+        return result;
     }
 };
