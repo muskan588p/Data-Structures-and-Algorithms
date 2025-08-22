@@ -10,7 +10,7 @@ public:
             swap(nums[idx], nums[i]);
             getperms(nums, ans, idx+1);
 
-            swap(nums[idx], nums[i]);
+            swap(nums[idx], nums[i]); //backtrack
         }
     }
     vector<vector<int>> permute(vector<int>& nums) {
