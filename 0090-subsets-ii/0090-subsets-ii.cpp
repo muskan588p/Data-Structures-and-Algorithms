@@ -7,15 +7,15 @@ public:
             return;                   //base case return is imporant
         }
         ans.push_back(arr[i]);
-        getallsubsets(arr,ans,i+1, allsubsets);
+        getallsubsets(arr,ans,i+1, allsubsets);  //for include use i
 
         ans.pop_back();
 
-        int idx=i+1;
+        int idx=i+1; //--------------------------
         while(idx<n && arr[idx]==arr[idx-1]){
             idx++;
         }
-        getallsubsets(arr,ans,idx, allsubsets);
+        getallsubsets(arr,ans,idx, allsubsets); //for exclude use idx
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(), nums.end());
