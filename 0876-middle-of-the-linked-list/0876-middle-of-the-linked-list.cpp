@@ -11,13 +11,25 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* slow=head;
-        ListNode* fast=head;
+        ListNode* temp=head;
+        int count=0;
 
-        while(fast!=nullptr && fast->next!=nullptr){
-            slow=slow->next;
-            fast=fast->next->next;
+        //step 1 find size of ll
+        while(temp!=nullptr){
+            count++;
+            temp=temp->next;
         }
-        return slow;    //slow points to midnode when fast reaches at last or null
+        int midnode=(count/2)+1;
+        temp=head;        
+
+        //step 2 traverse half ll till midnode
+        while(temp!=nullptr){
+            midnode=midnode-1;
+            if(midnode==0){//midnode is found so break & temp is pointing here so return temp
+                break;
+            }
+            temp=temp->next;    //update temo to next node
+        }
+        return temp;
     }
 };
