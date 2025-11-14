@@ -10,16 +10,15 @@ public:
         int len=0;
         while(r<n){
             char ch=s[r];
-            if(mp.find(s[r])!=mp.end() && mp[ch] >= l){
-                l=mp[ch] +1;
+            if(mp.find(ch) != mp.end() && mp[ch]>=l){
+                l=mp[ch]+1;
             }
             mp[ch]=r;
             len=r-l+1;
-            maxlen=max(maxlen, len);
+            maxlen=max(len, maxlen);
 
             r++;
         }
         return maxlen;
-
     }
 };
